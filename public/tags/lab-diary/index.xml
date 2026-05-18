@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lab Diary on Michal | Purple Team Lab</title>
+    <link>http://localhost:1313/tags/lab-diary/</link>
+    <description>Recent content in Lab Diary on Michal | Purple Team Lab</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/lab-diary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Who Owns the Code? Mastering chmod, chown, and Linux Groups</title>
+      <link>http://localhost:1313/posts/file-ownership-and-groups/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/file-ownership-and-groups/</guid>
+      <description>&lt;p&gt;After learning how to gain root privileges using &lt;code&gt;sudo&lt;/code&gt;, my next logical step was to understand how the Linux operating system handles file access control on a granular level. Every file and directory in Linux has an Owner (User) and a Group associated with it.&lt;/p&gt;&#xA;&lt;p&gt;To test this, I created a file named &lt;code&gt;secret_file.txt&lt;/code&gt; containing a dummy secret.&lt;/p&gt;&#xA;&lt;h3 id=&#34;inspecting-initial-permissions&#34;&gt;Inspecting Initial Permissions&lt;/h3&gt;&#xA;&lt;p&gt;When checking the file with &lt;code&gt;ls -l&lt;/code&gt;, I noticed its permissions were set to &lt;code&gt;-rw-rw-r--&lt;/code&gt;. Breaking this down:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Escaping the User Space: Sudo, Root, and the Shadow File</title>
+      <link>http://localhost:1313/posts/privilege-escalation-shadow/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/privilege-escalation-shadow/</guid>
+      <description>&lt;p&gt;Following up on my previous exploration of the Linux FHS, I decided to tackle the exact boundary that stopped me: the &lt;code&gt;/root&lt;/code&gt; directory and the concept of system permissions.&lt;/p&gt;&#xA;&lt;p&gt;Linux is fundamentally a multi-user operating system. It strictly separates standard users (like my &lt;code&gt;kali&lt;/code&gt; account) from the superuser (&lt;code&gt;root&lt;/code&gt;). To see this in action, I attempted to read one of the most highly guarded files in a Linux system: &lt;code&gt;/etc/shadow&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Navigating the Linux FHS: Where did the logs go?</title>
+      <link>http://localhost:1313/posts/linux-fhs-navigation/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux-fhs-navigation/</guid>
+      <description>&lt;p&gt;Today marks the official start of my Purple Team home lab experiments. I booted up my Kali Linux virtual machine to explore the Linux Filesystem Hierarchy Standard (FHS).&lt;/p&gt;&#xA;&lt;p&gt;Coming from a Windows background where everything revolves around the &lt;code&gt;C:\&lt;/code&gt; drive, getting used to the root directory &lt;code&gt;/&lt;/code&gt; as the starting point of everything is a paradigm shift. I spent some time exploring core directories using basic commands like &lt;code&gt;pwd&lt;/code&gt;, &lt;code&gt;ls -la&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

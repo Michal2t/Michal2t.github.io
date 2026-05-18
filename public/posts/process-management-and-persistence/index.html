@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunting Processes: Signals, Services, and System Permissions | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+  <article>
+    <h1 style="margin-bottom: 10px;">Hunting Processes: Signals, Services, and System Permissions</h1>
+    <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 40px;">
+      2026-05-17
+    </div>
+    
+    <div class="content">
+      <p>Moving on from file permissions, my lab work shifted to the dynamic side of the OS: Process Management. For a Blue Team analyst, monitoring processes is essential because malware cannot execute without becoming a process.</p>
+<p>I used the <code>top</code> and <code>ps aux</code> commands to get a static and dynamic view of what was running on my system.</p>
+<h3 id="the-grep-inception">The <code>grep</code> Inception</h3>
+<p>To practice finding specific processes, I started a dummy background task using <code>sleep 1000 &amp;</code>. This command doesn&rsquo;t pause the OS; it simply creates a harmless process that idles for 1000 seconds, perfect for lab targeting.</p>
+<p>When I ran <code>ps aux | grep sleep</code> to find its Process ID (PID), I noticed two results:</p>
+<ol>
+<li><code>sleep 1000</code></li>
+<li><code>grep --color=auto sleep</code></li>
+</ol>
+<p>This was a great &ldquo;Aha!&rdquo; moment. The <code>grep</code> command itself was actively running to filter the output. Because the word &ldquo;sleep&rdquo; was in its own command line, it caught itself in the filter!</p>
+<h3 id="termination-and-signals-kill-vs-kill--9">Termination and Signals (<code>kill</code> vs <code>kill -9</code>)</h3>
+<p>Once I found the PID, I terminated the process using the <code>kill</code> command. However, there is a distinct difference in how termination works:</p>
+<ul>
+<li>A standard <code>kill [PID]</code> sends a <strong>SIGTERM</strong> (Signal Terminate) to the process. It politely asks the program to save its data and shut down safely.</li>
+<li>Malware, or unresponsive programs, often ignore this polite request. In those cases, we use <code>kill -9 [PID]</code>, which sends a <strong>SIGKILL</strong>. This is handled directly by the kernel and terminates the process immediately, with no chance of resistance.</li>
+</ul>
+<h3 id="persistence-why-services-matter">Persistence: Why Services Matter</h3>
+<p>Standard processes die when the terminal closes or the system reboots. Attackers want &ldquo;Persistence&rdquo;. They achieve this by hooking into the system&rsquo;s service manager, <code>systemd</code> (which always runs as PID 1).</p>
+<p>If a program is registered and enabled via <code>systemctl enable</code>, <code>systemd</code> is instructed to automatically launch it in the background every time the machine boots, long before any user logs in. This is exactly how legitimate services like SSH operate, and precisely how advanced backdoors survive reboots.</p>
+<h3 id="deep-dive-special-permissions">Deep Dive: Special Permissions</h3>
+<p>While analyzing system binaries, I also reviewed special file permissions that bypass standard rules:</p>
+<ul>
+<li><strong>SUID (Set User ID):</strong> Allows a user to execute a file with the permissions of the file&rsquo;s <em>owner</em>. (e.g., the <code>passwd</code> command runs as root so standard users can update their passwords). Misconfigured SUID binaries are prime targets for privilege escalation.</li>
+<li><strong>SGID (Set Group ID):</strong> Similar to SUID, but executes with the group&rsquo;s privileges. On directories, it forces new files to inherit the directory&rsquo;s group.</li>
+<li><strong>Sticky Bit:</strong> Used on shared directories like <code>/tmp</code>. It ensures that only the file&rsquo;s owner (or root) can delete or rename the file, protecting it from other users with write access to the directory.</li>
+</ul>
+ </div>
+  </article>
+
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+body {
+    --bg: #130f26 !important;
+    --background: #130f26 !important;
+    --color: #f4ebd0 !important;
+    --accent: #a855f7 !important;
+    --theme: #a855f7 !important;
+    background-color: var(--bg) !important;
+    color: var(--color) !important;
+}
+
+/* Wymuszenie koloru dla linków, tytułów i akcentów */
+a, h1, h2, h3, h4, h5, h6, .logo, .menu li.active a {
+    color: var(--accent) !important;
+}
+
+/* Podświetlenie tekstu przy zaznaczaniu myszką (hakerski detal!) */
+::selection {
+    background: var(--accent) !important;
+    color: var(--bg) !important;
+}

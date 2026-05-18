@@ -1,0 +1,4 @@
+baseURL = 'https://Michal2t.github.io/'
+languageCode = 'en-us'
+title = 'Michal | Purple Team Lab'
+theme = 'purple-team'

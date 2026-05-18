@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <div class="post-list">
+    {{ range where .Site.RegularPages "Section" "posts" }}
+      <article style="margin-bottom: 50px;">
+        <h2 style="margin-bottom: 5px;">
+          <a href="{{ .Permalink }}" style="text-decoration: none; border: none;">{{ .Title }}</a>
+        </h2>
+        <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 15px;">
+          {{ .Date.Format "2006-01-02" }}
+        </div>
+        <p>{{ .Summary }}</p> 
+        <a href="{{ .Permalink }}" style="font-weight: bold; font-size: 0.9em;">[Read More]</a>
+      </article>
+    {{ end }}
+  </div>
+{{ end }}

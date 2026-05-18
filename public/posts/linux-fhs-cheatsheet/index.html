@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux File Tree Map: A Cheat Sheet for the FHS | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+  <article>
+    <h1 style="margin-bottom: 10px;">Linux File Tree Map: A Cheat Sheet for the FHS</h1>
+    <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 40px;">
+      2026-05-08
+    </div>
+    
+    <div class="content">
+      <p>Before diving into deep operating system mechanics, it&rsquo;s crucial to understand the layout of the Linux Filesystem Hierarchy Standard (FHS). Coming from a Windows environment, the lack of <code>C:\</code> or <code>D:\</code> drives can be confusing. In Linux, everything starts at the root (<code>/</code>), and everything is treated as a file.</p>
+<p>Here is a quick cheat sheet I compiled to map out the most critical directories for administration and security analysis:</p>
+<h3 id="the-root-and-core">The Root and Core</h3>
+<ul>
+<li><strong><code>/</code> (Root):</strong> The very top of the filesystem hierarchy. Every single file and directory on the system is nested under this starting point.</li>
+<li><strong><code>/root</code>:</strong> The personal home directory for the <code>root</code> user (the superuser). Regular users cannot enter this directory.</li>
+<li><strong><code>/home</code>:</strong> Contains the personal directories for all standard users (e.g., <code>/home/kali</code>).</li>
+</ul>
+<h3 id="binaries-executables">Binaries (Executables)</h3>
+<ul>
+<li><strong><code>/bin</code> (Binaries):</strong> Contains essential command-line utilities used by all users (like <code>ls</code>, <code>pwd</code>, <code>cat</code>).</li>
+<li><strong><code>/sbin</code> (System Binaries):</strong> Contains administrative executables used primarily by the <code>root</code> user for system maintenance (like <code>fdisk</code>, <code>iptables</code>).</li>
+</ul>
+<h3 id="configuration-and-variable-data">Configuration and Variable Data</h3>
+<ul>
+<li><strong><code>/etc</code>:</strong> The &ldquo;brain&rdquo; of the system. It contains all the global configuration files for the OS and installed services (e.g., <code>/etc/shadow</code> for password hashes, <code>/etc/ssh/</code> for SSH server configs). <em>Blue Team note: If a service is misconfigured, this is where you fix it.</em></li>
+<li><strong><code>/var</code> (Variable Data):</strong> Contains files to which the system writes data during the course of its operation. The most important subdirectory here is <code>/var/log/</code>, which holds system and service logs.</li>
+</ul>
+<h3 id="temporary-and-device-files">Temporary and Device Files</h3>
+<ul>
+<li><strong><code>/tmp</code>:</strong> A directory for temporary files created by the system and users. It is usually cleared upon reboot. It&rsquo;s heavily used by both programs and attackers to drop temporary payloads.</li>
+<li><strong><code>/dev</code> (Devices):</strong> In Linux, &ldquo;everything is a file.&rdquo; This folder contains special device files representing hardware components (like hard drives as <code>/dev/sda</code>).</li>
+</ul>
+<p>Keeping this mental map handy makes navigating the terminal and understanding system logs significantly easier.</p>
+ </div>
+  </article>
+
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

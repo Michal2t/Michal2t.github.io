@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

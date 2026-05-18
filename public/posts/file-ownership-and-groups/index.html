@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Owns the Code? Mastering chmod, chown, and Linux Groups | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+  <article>
+    <h1 style="margin-bottom: 10px;">Who Owns the Code? Mastering chmod, chown, and Linux Groups</h1>
+    <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 40px;">
+      2026-05-15
+    </div>
+    
+    <div class="content">
+      <p>After learning how to gain root privileges using <code>sudo</code>, my next logical step was to understand how the Linux operating system handles file access control on a granular level. Every file and directory in Linux has an Owner (User) and a Group associated with it.</p>
+<p>To test this, I created a file named <code>secret_file.txt</code> containing a dummy secret.</p>
+<h3 id="inspecting-initial-permissions">Inspecting Initial Permissions</h3>
+<p>When checking the file with <code>ls -l</code>, I noticed its permissions were set to <code>-rw-rw-r--</code>. Breaking this down:</p>
+<ul>
+<li>The first <code>rw-</code> belongs to the <strong>Owner</strong> (my <code>kali</code> user).</li>
+<li>The second <code>rw-</code> belongs to the <strong>Group</strong>.</li>
+<li>The final <code>r--</code> belongs to <strong>Others</strong> (anyone else on the system).</li>
+</ul>
+<p>This means that by default on my system configuration (determined by a mechanism called <code>umask</code>), anyone in my group could read and modify this file, while the rest of the world could only read it.</p>
+<h3 id="creating-a-target-and-modifying-access">Creating a Target and Modifying Access</h3>
+<p>To simulate a real multi-user scenario, I created a secondary user named <code>bob</code> using <code>sudo adduser bob</code>.</p>
+<p>I wanted to completely lock Bob out of my file. To do this, I stripped away the read permission from &ldquo;Others&rdquo; using the <code>chmod</code> (Change Mode) command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod o-r secret_file.txt
+</span></span></code></pre></div><p>After running <code>ls -l</code> again, the permissions changed to <code>-rw-rw----</code>. Bob was successfully blind to my secret.</p>
+<h3 id="tricking-the-system-changing-ownership">Tricking the System: Changing Ownership</h3>
+<p>The ultimate test of control is transferring ownership. I used the <code>chown</code> (Change Owner) command to give full control of my file to Bob. The syntax used was:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown bob:bob secret_file.txt
+</span></span></code></pre></div><p>This command acts like a bridge: it changes the owner to user <code>bob</code> and the group to group <code>bob</code>.</p>
+<p>During this experiment, I discovered an important Linux architecture design: <strong>User Private Groups (UPG)</strong>. When I created the user <code>bob</code> earlier, the system automatically created a corresponding group named <code>bob</code>.</p>
+<h3 id="the-ultimate-lockout">The Ultimate Lockout</h3>
+<p>Once the ownership was transferred, I attempted to read my own file again using <code>cat secret_file.txt</code>.</p>
+<p>The result? A strict, clean <strong><code>Permission denied</code></strong>.</p>
+<p>Even though I was the one who originally created the file, the operating system strictly enforced the new ownership rules. Because my current user (<code>kali</code>) was no longer the owner, nor a member of Bob&rsquo;s private group, the kernel blocked my access request.</p>
+<p><em>In Linux, ownership is absolute—until root decides otherwise.</em></p>
+ </div>
+  </article>
+
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

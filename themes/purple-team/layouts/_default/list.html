@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <h1 style="border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 30px;">
+    {{ if eq .Title "Posts" }}
+      OS Internals
+    {{ else }}
+      {{ .Title }}
+    {{ end }}
+  </h1>
+  <div class="post-list">
+    {{ range .Pages }}
+      <article style="margin-bottom: 40px;">
+        <h2 style="margin-bottom: 5px;">
+          <a href="{{ .Permalink }}" style="text-decoration: none; border: none;">{{ .Title }}</a>
+        </h2>
+        <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 10px;">
+          {{ .Date.Format "2006-01-02" }}
+        </div>
+        <p>{{ .Summary }}</p>
+        <a href="{{ .Permalink }}" style="font-weight: bold; font-size: 0.9em;">[Read More]</a>
+      </article>
+    {{ end }}
+  </div>
+{{ end }}

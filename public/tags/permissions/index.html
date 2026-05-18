@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permissions | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+  <h1 style="border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 30px;">
+    Permissions
+  </h1>
+  <div class="post-list">
+    
+      <article style="margin-bottom: 40px;">
+        <h2 style="margin-bottom: 5px;">
+          <a href="http://localhost:1313/posts/file-ownership-and-groups/" style="text-decoration: none; border: none;">Who Owns the Code? Mastering chmod, chown, and Linux Groups</a>
+        </h2>
+        <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 10px;">
+          2026-05-15
+        </div>
+        <p><p>After learning how to gain root privileges using <code>sudo</code>, my next logical step was to understand how the Linux operating system handles file access control on a granular level. Every file and directory in Linux has an Owner (User) and a Group associated with it.</p>
+<p>To test this, I created a file named <code>secret_file.txt</code> containing a dummy secret.</p>
+<h3 id="inspecting-initial-permissions">Inspecting Initial Permissions</h3>
+<p>When checking the file with <code>ls -l</code>, I noticed its permissions were set to <code>-rw-rw-r--</code>. Breaking this down:</p></p>
+        <a href="http://localhost:1313/posts/file-ownership-and-groups/" style="font-weight: bold; font-size: 0.9em;">[Read More]</a>
+      </article>
+    
+  </div>
+
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating the Linux FHS: Where did the logs go? | Purple Team Lab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <img src="/kali-bg.png" alt="Kali Background" class="watermark">
+
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Terminal</a>
+            <nav>
+                <a href="/posts/" class="nav-link">OS Internals</a>
+                <a href="/tryhackme/" class="nav-link">TryHackMe</a>
+                <a href="/security-prep/" class="nav-link">Security+ Prep</a>
+                <a href="/about/" class="nav-link">About</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            
+  <article>
+    <h1 style="margin-bottom: 10px;">Navigating the Linux FHS: Where did the logs go?</h1>
+    <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 40px;">
+      2026-05-10
+    </div>
+    
+    <div class="content">
+      <p>Today marks the official start of my Purple Team home lab experiments. I booted up my Kali Linux virtual machine to explore the Linux Filesystem Hierarchy Standard (FHS).</p>
+<p>Coming from a Windows background where everything revolves around the <code>C:\</code> drive, getting used to the root directory <code>/</code> as the starting point of everything is a paradigm shift. I spent some time exploring core directories using basic commands like <code>pwd</code>, <code>ls -la</code>, and <code>cd</code>.</p>
+<h3 id="the-mystery-of-the-missing-logs">The Mystery of the Missing Logs</h3>
+<p>As someone interested in security (Blue Team/Forensics), I know that log files are critical. Naturally, I navigated to <code>/var/log</code> expecting to find the classic <code>auth.log</code> (which records authentication attempts) and <code>syslog</code>.</p>
+<p>To my surprise, <strong>they weren&rsquo;t there</strong>.</p>
+<p>After some research, I discovered that this isn&rsquo;t an error. It&rsquo;s a testament to how Linux distributions evolve. Modern Kali Linux (and many others like Ubuntu) have adopted <code>systemd</code>. Instead of writing flat text files for system logs, <code>systemd</code> uses a component called <code>journald</code>, which stores logs in a binary format inside <code>/var/log/journal/</code>.</p>
+<p>To read these modern logs, we can no longer just use <code>cat</code> or <code>less</code> on a text file. Instead, we must use the <code>journalctl</code> command. It’s a great lesson in not relying solely on old cheat sheets—the OS ecosystem is constantly shifting.</p>
+<h3 id="the-root-boundary">The Root Boundary</h3>
+<p>Finally, I attempted to navigate into the <code>/root</code> directory using <code>cd /root</code>. As expected, the system threw a strict:
+<code>cd: permission denied: /root</code></p>
+<p>Even though I installed the system, my current user (<code>kali</code>) is just a standard user. The system successfully stopped me from entering the domain of the superuser. Understanding how to legitimately bypass this restriction (and how attackers do it maliciously via Privilege Escalation) will be the focus of my upcoming studies.</p>
+<p><em>Learning the map is more important than memorizing every tree in the forest.</em></p>
+ </div>
+  </article>
+
+        </main>
+
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            <p>&copy; 2026 Michal | Documenting my journey to Security+ and beyond.</p>
+        </footer>
+    </div>
+</body>
+</html>

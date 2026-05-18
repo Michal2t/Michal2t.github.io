@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FHS on Michal | Purple Team Lab</title>
+    <link>http://localhost:1313/tags/fhs/</link>
+    <description>Recent content in FHS on Michal | Purple Team Lab</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/fhs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Navigating the Linux FHS: Where did the logs go?</title>
+      <link>http://localhost:1313/posts/linux-fhs-navigation/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux-fhs-navigation/</guid>
+      <description>&lt;p&gt;Today marks the official start of my Purple Team home lab experiments. I booted up my Kali Linux virtual machine to explore the Linux Filesystem Hierarchy Standard (FHS).&lt;/p&gt;&#xA;&lt;p&gt;Coming from a Windows background where everything revolves around the &lt;code&gt;C:\&lt;/code&gt; drive, getting used to the root directory &lt;code&gt;/&lt;/code&gt; as the starting point of everything is a paradigm shift. I spent some time exploring core directories using basic commands like &lt;code&gt;pwd&lt;/code&gt;, &lt;code&gt;ls -la&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux File Tree Map: A Cheat Sheet for the FHS</title>
+      <link>http://localhost:1313/posts/linux-fhs-cheatsheet/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux-fhs-cheatsheet/</guid>
+      <description>&lt;p&gt;Before diving into deep operating system mechanics, it&amp;rsquo;s crucial to understand the layout of the Linux Filesystem Hierarchy Standard (FHS). Coming from a Windows environment, the lack of &lt;code&gt;C:\&lt;/code&gt; or &lt;code&gt;D:\&lt;/code&gt; drives can be confusing. In Linux, everything starts at the root (&lt;code&gt;/&lt;/code&gt;), and everything is treated as a file.&lt;/p&gt;&#xA;&lt;p&gt;Here is a quick cheat sheet I compiled to map out the most critical directories for administration and security analysis:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

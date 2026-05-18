@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OS Internals on Michal | Purple Team Lab</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in OS Internals on Michal | Purple Team Lab</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h3 id=&#34;hello-im-michal&#34;&gt;Hello, I&amp;rsquo;m Michal.&lt;/h3&gt;&#xA;&lt;p&gt;Welcome to my Purple Team laboratory. I am currently transitioning my focus toward cybersecurity, bridging the gap between offensive tactics (Red Team) and defensive strategies (Blue Team).&lt;/p&gt;&#xA;&lt;p&gt;This blog serves as my digital notebook and portfolio. It documents my hands-on experiments with Operating System internals (Windows/Linux), my write-ups for TryHackMe challenges, and my structured preparation for the CompTIA Security+ certification.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;The best way to learn a system is to break it. The best way to secure a system is to understand how it was broken.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CompTIA Security&#43; Preparation</title>
+      <link>http://localhost:1313/security-prep/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/security-prep/</guid>
+      <description>&lt;h3 id=&#34;-work-in-progress&#34;&gt;🚧 Work in Progress&amp;hellip;&lt;/h3&gt;&#xA;&lt;p&gt;This section will house my theoretical summaries, exam notes, and core concept breakdowns as I prepare to tackle the CompTIA Security+ certification.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>TryHackMe Write-ups</title>
+      <link>http://localhost:1313/tryhackme/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tryhackme/</guid>
+      <description>&lt;h3 id=&#34;-work-in-progress&#34;&gt;🚧 Work in Progress&amp;hellip;&lt;/h3&gt;&#xA;&lt;p&gt;This section is currently under construction.&#xA;Soon, I will be posting my detailed write-ups, vulnerability analysis, and exploitation paths from various TryHackMe rooms here.&lt;/p&gt;&#xA;&lt;p&gt;Stay tuned!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hunting Processes: Signals, Services, and System Permissions</title>
+      <link>http://localhost:1313/posts/process-management-and-persistence/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/process-management-and-persistence/</guid>
+      <description>&lt;p&gt;Moving on from file permissions, my lab work shifted to the dynamic side of the OS: Process Management. For a Blue Team analyst, monitoring processes is essential because malware cannot execute without becoming a process.&lt;/p&gt;&#xA;&lt;p&gt;I used the &lt;code&gt;top&lt;/code&gt; and &lt;code&gt;ps aux&lt;/code&gt; commands to get a static and dynamic view of what was running on my system.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-grep-inception&#34;&gt;The &lt;code&gt;grep&lt;/code&gt; Inception&lt;/h3&gt;&#xA;&lt;p&gt;To practice finding specific processes, I started a dummy background task using &lt;code&gt;sleep 1000 &amp;amp;&lt;/code&gt;. This command doesn&amp;rsquo;t pause the OS; it simply creates a harmless process that idles for 1000 seconds, perfect for lab targeting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Who Owns the Code? Mastering chmod, chown, and Linux Groups</title>
+      <link>http://localhost:1313/posts/file-ownership-and-groups/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/file-ownership-and-groups/</guid>
+      <description>&lt;p&gt;After learning how to gain root privileges using &lt;code&gt;sudo&lt;/code&gt;, my next logical step was to understand how the Linux operating system handles file access control on a granular level. Every file and directory in Linux has an Owner (User) and a Group associated with it.&lt;/p&gt;&#xA;&lt;p&gt;To test this, I created a file named &lt;code&gt;secret_file.txt&lt;/code&gt; containing a dummy secret.&lt;/p&gt;&#xA;&lt;h3 id=&#34;inspecting-initial-permissions&#34;&gt;Inspecting Initial Permissions&lt;/h3&gt;&#xA;&lt;p&gt;When checking the file with &lt;code&gt;ls -l&lt;/code&gt;, I noticed its permissions were set to &lt;code&gt;-rw-rw-r--&lt;/code&gt;. Breaking this down:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Escaping the User Space: Sudo, Root, and the Shadow File</title>
+      <link>http://localhost:1313/posts/privilege-escalation-shadow/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/privilege-escalation-shadow/</guid>
+      <description>&lt;p&gt;Following up on my previous exploration of the Linux FHS, I decided to tackle the exact boundary that stopped me: the &lt;code&gt;/root&lt;/code&gt; directory and the concept of system permissions.&lt;/p&gt;&#xA;&lt;p&gt;Linux is fundamentally a multi-user operating system. It strictly separates standard users (like my &lt;code&gt;kali&lt;/code&gt; account) from the superuser (&lt;code&gt;root&lt;/code&gt;). To see this in action, I attempted to read one of the most highly guarded files in a Linux system: &lt;code&gt;/etc/shadow&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Navigating the Linux FHS: Where did the logs go?</title>
+      <link>http://localhost:1313/posts/linux-fhs-navigation/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux-fhs-navigation/</guid>
+      <description>&lt;p&gt;Today marks the official start of my Purple Team home lab experiments. I booted up my Kali Linux virtual machine to explore the Linux Filesystem Hierarchy Standard (FHS).&lt;/p&gt;&#xA;&lt;p&gt;Coming from a Windows background where everything revolves around the &lt;code&gt;C:\&lt;/code&gt; drive, getting used to the root directory &lt;code&gt;/&lt;/code&gt; as the starting point of everything is a paradigm shift. I spent some time exploring core directories using basic commands like &lt;code&gt;pwd&lt;/code&gt;, &lt;code&gt;ls -la&lt;/code&gt;, and &lt;code&gt;cd&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux File Tree Map: A Cheat Sheet for the FHS</title>
+      <link>http://localhost:1313/posts/linux-fhs-cheatsheet/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux-fhs-cheatsheet/</guid>
+      <description>&lt;p&gt;Before diving into deep operating system mechanics, it&amp;rsquo;s crucial to understand the layout of the Linux Filesystem Hierarchy Standard (FHS). Coming from a Windows environment, the lack of &lt;code&gt;C:\&lt;/code&gt; or &lt;code&gt;D:\&lt;/code&gt; drives can be confusing. In Linux, everything starts at the root (&lt;code&gt;/&lt;/code&gt;), and everything is treated as a file.&lt;/p&gt;&#xA;&lt;p&gt;Here is a quick cheat sheet I compiled to map out the most critical directories for administration and security analysis:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

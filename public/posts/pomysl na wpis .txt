@@ -1,0 +1,1 @@
+niech ai wypisze te foldery glowne etc bin/bash root var itd., i opisze po krotce każdy z nich - i to jako wpis, file tree map 
